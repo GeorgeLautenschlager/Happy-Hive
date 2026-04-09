@@ -1,4 +1,4 @@
-``` mermaid
+```mermaid
 graph TD
     %% Input Layer (The Producers)
     subgraph Inputs [Input Sources]
