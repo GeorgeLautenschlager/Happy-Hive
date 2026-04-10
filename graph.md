@@ -41,18 +41,18 @@ graph TD
 
     %% Routing Logic: GTD Flow
     Router -- "inbox" --> Capture
-    
+
     %% Routing Logic: Planning Flow
     Router -- "weekday_morning" --> WeekdayMorning
     WeekdayMorning --> DayPlan
-    
+
     %% Routing Logic: Completion & Execution
     Router -- "task_completed" --> DayPlan
     DayPlan -- "sync_status" --> Organize
 
     %% Styling
-    style MessageBus fill:#f9f,stroke:#333,stroke-width:2px
-    style Router fill:#fff4dd,stroke:#d4a017,stroke-width:2px
-    style GTDPipeline fill:#e1f5fe,stroke:#01579b
-    style Planning fill:#e8f5e9,stroke:#2e7d32
+    style MessageBus fill:#1b2082,stroke:#1b2082,stroke-width:2px
+    style Router fill:#29b33b,stroke:#29b33b,stroke-width:2px
+    style GTDPipeline fill:#333,stroke:#01579b
+    style Planning fill:#333,stroke:#2e7d32
 ```
