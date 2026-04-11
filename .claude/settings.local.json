@@ -7,7 +7,9 @@
       "WebFetch(domain:reference.langchain.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:docs.langchain.com)"
+      "WebFetch(domain:docs.langchain.com)",
+      "Bash(xargs -I{} basename {})",
+      "Bash(poetry run:*)"
     ]
   }
 }
