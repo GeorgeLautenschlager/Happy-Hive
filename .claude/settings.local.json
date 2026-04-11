@@ -9,7 +9,11 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:docs.langchain.com)",
       "Bash(xargs -I{} basename {})",
-      "Bash(poetry run:*)"
+      "Bash(poetry run:*)",
+      "Bash(python -c \"import deepagents; print\\(deepagents.__file__\\)\")",
+      "Bash(pip show:*)",
+      "Bash(sed 's/name = \"//')",
+      "Bash(sed 's/\"//')"
     ]
   }
 }
