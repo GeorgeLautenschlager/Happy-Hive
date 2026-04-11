@@ -1,19 +1,24 @@
-[tool.poetry]
+[project]
 name = "agentic-gtd-system"
 version = "0.1.0"
-description = "A dynamic routing system for GTD-based agentic workflows"
-authors = ["Your Name <you@example.com>"]
+description = "Happy little woker bees for every ocasion."
+authors = [
+    {name = "Your Name", email = "you@example.com"}
+]
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-ollama>=0.2.0",
+    "langgraph>=0.2.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-langchain = "^0.3.0"
-langchain-core = "^0.3.0"
-langchain-ollama = "^0.2.0"
-langgraph = "^0.2.0"
-pydantic = "^2.0.0"
-python-dotenv = "^1.0.0"
+[tool.poetry]
+# This section is now minimal as metadata moved to [project]
+package-mode = false
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
