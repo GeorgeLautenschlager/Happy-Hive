@@ -1,4 +1,4 @@
-from langgraph.prebuilt import create_react_agent
+from deepagents import create_deep_agent
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
 
@@ -17,8 +17,11 @@ tools = [placeholder_tool]
 
 llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL)
 
-agent = create_react_agent(llm, tools)
-
+agent = create_deep_agent(
+    model=llm,
+    tools=[placeholder_tool],
+    system_prompt="You are an expert on GTD. You are responsible for the Clarify and Organize steps. You watch `~/gtd/inbox.md` and act when it changes.",
+)
 
 def run(message: str) -> None:
     for chunk in agent.stream({"messages": [("human", message)]}):
