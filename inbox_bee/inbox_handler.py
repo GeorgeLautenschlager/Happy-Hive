@@ -17,4 +17,5 @@ class InboxHandler(FileSystemEventHandler):
         if now - self._last_trigger < 1.0:
             return
         self._last_trigger = now
+        print(f"{self._inbox_path} modified, processing...")
         self._on_change()
