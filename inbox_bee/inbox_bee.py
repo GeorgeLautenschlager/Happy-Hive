@@ -45,7 +45,12 @@ def run(message: str) -> None:
 
 
 def process_inbox():
-    prompt = f"The inbox at {INBOX_PATH} has been updated. Read it and apply the clarify and organize skills to it."
+    prompt = (
+        f"Use the read_file tool to read the file at file_path=\"{INBOX_PATH}\". "
+        "Then apply the clarify skill to the contents, and write the result back "
+        f"to \"{INBOX_PATH}\" using the write_file tool. "
+        "After that, apply the organize skill to the updated contents."
+    )
     run(prompt)
 
 
