@@ -12,7 +12,7 @@ class InboxHandler(FileSystemEventHandler):
 
     def _is_inbox(self, path: str) -> bool:
         p = Path(path)
-        return p.stem == self._inbox_path.stem and p.parent == self._inbox_path.parent
+        return p.name == self._inbox_path.name and p.parent == self._inbox_path.parent
 
     def _process(self):
         """Debounced trigger for the change callback."""

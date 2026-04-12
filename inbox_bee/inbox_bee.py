@@ -6,7 +6,7 @@ from deepagents import create_deep_agent
 from deepagents.backends import FilesystemBackend
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
-from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver
 
 from inbox_handler import InboxHandler
 
@@ -61,7 +61,7 @@ def watch():
         print(f"Error: {INBOX_PATH} does not exist.", file=sys.stderr)
         sys.exit(1)
 
-    observer = Observer()
+    observer = PollingObserver(timeout=2.0)
     observer.schedule(InboxHandler(INBOX_PATH, process_inbox), str(INBOX_PATH.parent), recursive=False)
     observer.start()
     print(f"Watching {INBOX_PATH} for changes...")
