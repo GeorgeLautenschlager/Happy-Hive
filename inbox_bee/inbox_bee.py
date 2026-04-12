@@ -30,10 +30,10 @@ agent = create_deep_agent(
     system_prompt=(
         "You are an expert on GTD. You are responsible for the Clarify and "
         "Organize steps.\n\n"
-        "IMPORTANT: When using the read_file tool, you must use the argument name file_path."
+        "IMPORTANT: When using the read_file tool, you must use the argument name file_path. "
         "Do NOT use path.\n\n"
-        "Correct usage: read_file(file_path="/home/user/...") \n"
-        "Incorrect usage: read_file(path="/home/user/...")"
+        "Correct usage: read_file(file_path=\"/home/user/...\") \n"
+        "Incorrect usage: read_file(path=\"/home/user/...\")"
     ),
 )
 
