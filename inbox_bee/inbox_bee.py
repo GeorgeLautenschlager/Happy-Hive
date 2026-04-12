@@ -3,6 +3,7 @@ import time
 from pathlib import Path
 
 from deepagents import create_deep_agent
+from deepagents.backends import FilesystemBackend
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
 from watchdog.observers import Observer
@@ -27,6 +28,7 @@ agent = create_deep_agent(
     model=llm,
     tools=[placeholder_tool],
     skills=[str(SKILLS_DIR)],
+    backend=FilesystemBackend(root_dir="/"),
     system_prompt=(
         "You are an expert on GTD. You are responsible for the Clarify and "
         "Organize steps.\n\n"

@@ -21,7 +21,11 @@
       "WebFetch(domain:www.datacamp.com)",
       "WebFetch(domain:medium.com)",
       "Bash(python3 -c \"import deepagents; import os; print\\(os.path.dirname\\(deepagents.__file__\\)\\)\")",
-      "WebFetch(domain:deepwiki.com)"
+      "WebFetch(domain:deepwiki.com)",
+      "Bash(python -c \"import sys; print\\('\\\\n'.join\\(sys.path\\)\\)\")",
+      "Bash(xargs grep:*)",
+      "Bash(.venv/Scripts/python -c \"import deepagents; print\\(deepagents.__file__\\)\")",
+      "Bash(pip3 show:*)"
     ]
   }
 }
