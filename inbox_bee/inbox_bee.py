@@ -21,7 +21,7 @@ def placeholder_tool(query: str) -> str:
     """A placeholder tool. Replace with real tools."""
     return f"Result for: {query}"
 
-llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL)
+llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL, num_ctx=32768)
 
 agent = create_deep_agent(
     model=llm,

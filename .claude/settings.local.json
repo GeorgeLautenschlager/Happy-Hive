@@ -19,7 +19,9 @@
       "WebFetch(domain:blog.langchain.com)",
       "WebFetch(domain:abvijaykumar.medium.com)",
       "WebFetch(domain:www.datacamp.com)",
-      "WebFetch(domain:medium.com)"
+      "WebFetch(domain:medium.com)",
+      "Bash(python3 -c \"import deepagents; import os; print\\(os.path.dirname\\(deepagents.__file__\\)\\)\")",
+      "WebFetch(domain:deepwiki.com)"
     ]
   }
 }
