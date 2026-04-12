@@ -57,6 +57,7 @@ def watch():
     try:
         while True:
             time.sleep(10)
+            print(f"[observer] alive={observer.is_alive()} watches={observer._watches}")
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
