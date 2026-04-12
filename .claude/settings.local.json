@@ -13,7 +13,13 @@
       "Bash(python -c \"import deepagents; print\\(deepagents.__file__\\)\")",
       "Bash(pip show:*)",
       "Bash(sed 's/name = \"//')",
-      "Bash(sed 's/\"//')"
+      "Bash(sed 's/\"//')",
+      "Bash(python -c \"import deepagents; import os; print\\(os.path.dirname\\(deepagents.__file__\\)\\)\")",
+      "Bash(python -m site)",
+      "WebFetch(domain:blog.langchain.com)",
+      "WebFetch(domain:abvijaykumar.medium.com)",
+      "WebFetch(domain:www.datacamp.com)",
+      "WebFetch(domain:medium.com)"
     ]
   }
 }

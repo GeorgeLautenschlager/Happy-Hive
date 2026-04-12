@@ -13,6 +13,7 @@ from inbox_handler import InboxHandler
 OLLAMA_BASE_URL = "http://localhost:11434"
 MODEL = "gemma4:e4b"
 INBOX_PATH = Path.home() / "gtd" / "inbox.md"
+SKILLS_DIR = Path(__file__).parent.parent / "skills"
 
 
 @tool
@@ -25,6 +26,7 @@ llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL)
 agent = create_deep_agent(
     model=llm,
     tools=[placeholder_tool],
+    skills=[str(SKILLS_DIR)],
     system_prompt=(
         "You are an expert on GTD. You are responsible for the Clarify and "
         "Organize steps."
@@ -39,14 +41,7 @@ def run(message: str) -> None:
 
 
 def process_inbox():
-    content = INBOX_PATH.read_text(encoding="utf-8")
-    prompt = (
-        "The GTD inbox has been updated. Here is the list of items:\n\n"
-        "---\n"
-        f"{content}\n"
-        "---\n\n"
-        "for each one, attempt to organize the item. If unable ask for clarification"
-    )
+    prompt = f"The inbox at {INBOX_PATH} has been updated. Read it and apply the clarify and organize skills to it."
     run(prompt)
 
 
