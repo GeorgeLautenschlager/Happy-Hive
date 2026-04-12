@@ -29,7 +29,11 @@ agent = create_deep_agent(
     skills=[str(SKILLS_DIR)],
     system_prompt=(
         "You are an expert on GTD. You are responsible for the Clarify and "
-        "Organize steps."
+        "Organize steps.\n\n"
+        "IMPORTANT: When using the read_file tool, you must use the argument name file_path."
+        "Do NOT use path.\n\n"
+        "Correct usage: read_file(file_path="/home/user/...") \n"
+        "Incorrect usage: read_file(path="/home/user/...")"
     ),
 )
 
@@ -57,7 +61,6 @@ def watch():
     try:
         while True:
             time.sleep(10)
-            print(f"[observer] alive={observer.is_alive()} watches={observer._watches}")
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
