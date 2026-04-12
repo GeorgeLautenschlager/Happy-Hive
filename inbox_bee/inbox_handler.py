@@ -11,7 +11,6 @@ class InboxHandler(FileSystemEventHandler):
         self._last_trigger = 0.0
 
     def _is_inbox(self, path: str) -> bool:
-        """Match the inbox file regardless of extension (Stack Edit strips it)."""
         p = Path(path)
         return p.stem == self._inbox_path.stem and p.parent == self._inbox_path.parent
 

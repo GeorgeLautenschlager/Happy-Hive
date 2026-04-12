@@ -12,7 +12,7 @@ from inbox_handler import InboxHandler
 
 OLLAMA_BASE_URL = "http://localhost:11434"
 MODEL = "gemma4:e4b"
-INBOX_PATH = Path.home() / "gtd" / "inbox"
+INBOX_PATH = Path.home() / "gtd" / "inbox.md"
 SKILLS_DIR = Path(__file__).parent.parent / "skills"
 
 
