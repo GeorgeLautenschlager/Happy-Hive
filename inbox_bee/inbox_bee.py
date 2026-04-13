@@ -7,7 +7,6 @@ from deepagents import create_deep_agent
 from deepagents.backends import FilesystemBackend
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
-from watchdog.observers.polling import PollingObserver
 
 OLLAMA_BASE_URL = "http://localhost:11434"
 MODEL = "gemma4:e4b"

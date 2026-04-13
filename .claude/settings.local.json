@@ -25,7 +25,14 @@
       "Bash(python -c \"import sys; print\\('\\\\n'.join\\(sys.path\\)\\)\")",
       "Bash(xargs grep:*)",
       "Bash(.venv/Scripts/python -c \"import deepagents; print\\(deepagents.__file__\\)\")",
-      "Bash(pip3 show:*)"
+      "Bash(pip3 show:*)",
+      "Bash(python -m pytest inbox_bee/tests/test_inbox_bee.py -v)",
+      "Read(//c/Users/georg/.local/bin/**)",
+      "Read(//c/Users/georg/AppData/Roaming/**)",
+      "Bash(py -m pytest --version)",
+      "Bash(python3 -m pytest inbox_bee/tests/test_inbox_bee.py -v)",
+      "Read(//c/Users/georg/.venv/**)",
+      "Read(//c/Users/georg/**)"
     ]
   }
 }
