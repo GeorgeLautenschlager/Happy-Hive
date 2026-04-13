@@ -1,5 +1,6 @@
 import sys
 import time
+import hashlib
 from pathlib import Path
 
 from deepagents import create_deep_agent
@@ -8,14 +9,10 @@ from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
 from watchdog.observers.polling import PollingObserver
 
-from inbox_handler import InboxHandler
-
-
 OLLAMA_BASE_URL = "http://localhost:11434"
 MODEL = "gemma4:e4b"
 INBOX_PATH = Path.home() / "gtd" / "inbox.md"
 SKILLS_DIR = Path(__file__).parent.parent / "skills"
-
 
 @tool
 def placeholder_tool(query: str) -> str:
@@ -23,7 +20,6 @@ def placeholder_tool(query: str) -> str:
     return f"Result for: {query}"
 
 llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL, num_ctx=32768)
-
 agent = create_deep_agent(
     model=llm,
     tools=[placeholder_tool],
@@ -39,12 +35,10 @@ agent = create_deep_agent(
     ),
 )
 
-
 def run(message: str) -> None:
     for chunk in agent.stream({"messages": [("human", message)]}):
         print(chunk)
         print("---")
-
 
 def process_inbox():
     prompt = (
@@ -55,23 +49,26 @@ def process_inbox():
     )
     run(prompt)
 
-
 def watch():
-    if not INBOX_PATH.exists():
-        print(f"Error: {INBOX_PATH} does not exist.", file=sys.stderr)
-        sys.exit(1)
-
-    observer = PollingObserver(timeout=2.0)
-    observer.schedule(InboxHandler(INBOX_PATH, process_inbox), str(INBOX_PATH.parent), recursive=False)
-    observer.start()
-    print(f"Watching {INBOX_PATH} for changes...")
+    last_hash = None
+    print(f"Starting periodic processing of {INBOX_PATH} every 15 minutes...")
     try:
         while True:
-            time.sleep(10)
+            if INBOX_PATH.exists():
+                current_hash = hashlib.sha256(INBOX_PATH.read_bytes()).hexdigest()
+                if current_hash != last_hash:
+                    print(f"{INBOX_PATH} changed, processing...")
+                    process_inbox()
+                    last_hash = current_hash
+                else:
+                    print("No changes detected.")
+            else:
+                print(f"Warning: {INBOX_PATH} not found. Skipping this cycle.")
+
+            print("Sleeping for 15 minutes...")
+            time.sleep(15 * 60)
     except KeyboardInterrupt:
-        observer.stop()
-    observer.join()
-
-
+        print("\nStopping inbox bee...")
 if __name__ == "__main__":
     watch()
+
