@@ -6,6 +6,7 @@ from pathlib import Path
 from deepagents import create_deep_agent
 from deepagents.backends import FilesystemBackend
 from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 
 OLLAMA_BASE_URL = "http://localhost:11434"
@@ -18,7 +19,13 @@ def placeholder_tool(query: str) -> str:
     """A placeholder tool. Replace with real tools."""
     return f"Result for: {query}"
 
-llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL, num_ctx=32768)
+# llm = ChatOllama(model=MODEL, base_url=OLLAMA_BASE_URL, num_ctx=32768)
+llm = ChatOpenAI(
+    model="gemma-4-26b-a4b-it",  # must match what's loaded in LM Studio
+    base_url="http://100.126.84.49:1234/v1",
+    api_key="lm-studio",  # arbitrary, LM Studio ignores it
+)
+
 agent = create_deep_agent(
     model=llm,
     tools=[placeholder_tool],
