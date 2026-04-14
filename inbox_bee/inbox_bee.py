@@ -49,9 +49,20 @@ def run(message: str) -> None:
 def process_inbox():
     prompt = (
         f"Use the read_file tool to read the file at file_path=\"{INBOX_PATH}\". "
-        "Then apply the clarify skill to the contents, and write the result back "
-        f"to \"{INBOX_PATH}\" using the write_file tool. "
-        "After that, apply the organize skill to the updated contents."
+        "Then process each line item individually, top to bottom, using the following rules:\n\n"
+        "1. If the item already has a ❓ annotation, skip it — it is awaiting clarification.\n"
+        "2. If the item is already struck through (~~text~~), skip it — it has been organized.\n"
+        "3. If the item has enough information to make an organize decision (even a rough one), "
+        "apply the organize skill immediately. You do NOT need to fully understand the item — "
+        "you only need enough to route it. 'fix bathroom fan' is sufficient to route to a home "
+        "maintenance project or loose-actions.md. Make the call.\n"
+        "4. If the item is genuinely ambiguous about its *destination* (not its details), "
+        "apply the clarify skill: annotate it with a single question and move on. "
+        "Do NOT ask the user anything interactively. Write the question into the file and skip the item.\n\n"
+        "IMPORTANT: Do not ask the user any questions at any point. "
+        "Make all routing decisions autonomously based on the item text. "
+        "When in doubt, pick the most reasonable destination and route it.\n\n"
+        f"Write all changes back to \"{INBOX_PATH}\" using the write_file tool."
     )
     run(prompt)
 
